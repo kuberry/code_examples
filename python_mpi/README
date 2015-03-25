@@ -1,0 +1,8 @@
+Running these scripts was preceded by
+
+>> sudo apt-get install libopenmpi-dev
+>> sudo apt-get install openmpi-bin
+>> sudo pip install mpi4py
+
+The pi_master.py + cpi.py examples comes from 
+http://mpi4py.scipy.org/docs/usrman/tutorial.html#point-to-point-communication
