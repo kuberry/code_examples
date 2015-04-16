@@ -8,6 +8,7 @@
 #include "mpi.h"                        // for MPI
 
 
+
 int main(int argc, char *argv[]) {
   MPI_Init(&argc,&argv);
 
@@ -15,15 +16,17 @@ int main(int argc, char *argv[]) {
   int world_size;
   MPI_Comm_size(MPI_COMM_WORLD, &world_size);
 
+  // Get the rank of the process
+  int my_rank;
+  MPI_Comm_rank(MPI_COMM_WORLD, &my_rank);
+
   // Check that enough processors are available
   if (world_size != 8) {
+    if (my_rank == 0) std::cout << "Must call this example with 8 processors." << std::endl;
     MPI_Finalize();
     return -1;
   };
   
-  // Get the rank of the process
-  int my_rank;
-  MPI_Comm_rank(MPI_COMM_WORLD, &my_rank);
 
   // For isLow processors, the numbers 0..14 are split over 5 processors as
   // [0], [2,1], [5,4,3], [9,8,7,6], [14,13,12,11,10]
